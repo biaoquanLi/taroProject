@@ -3,16 +3,13 @@
         "baseUrl": ".",
         "paths": {
             "@/components/*": [
-                "./src/components/*"
+                "src/components/*"
             ],
             "@/utils/*": [
-                "./src/utils/*"
-            ],
-            "@/package": [
-                "./package.json"
+                "src/utils/*"
             ],
             "@/project": [
-                "./project.config.json"
+                "project.config.json"
             ],
         }
     }

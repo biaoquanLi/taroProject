@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { View, Button, Text } from '@tarojs/components'
-// import { getTopicList } from '@/utils/request.js'
-import { getTopicList } from '../../utils/request'
+import Menu from '../../components/menu/Menu'
+// import { getTopicList } from '@/utils/request'
+// import { getTopicList } from '../../utils/request'
 
 import './index.less'
 class Index extends Component {
@@ -9,7 +10,7 @@ class Index extends Component {
     console.log(this.props, nextProps)
   }
   componentDidMount() {
-    getTopicList()
+    // getTopicList()
   }
   componentWillUnmount() { }
 
@@ -20,7 +21,9 @@ class Index extends Component {
   render() {
     return (
       <View className='index'>
-        <View><Text>Hello, World11</Text></View>
+        <View>
+          <Menu />
+        </View>
       </View>
     )
   }

@@ -18,12 +18,11 @@ const config = {
     options: {
     }
   },
-  alias: {
-    '@/components': path.resolve(__dirname, '..', 'src/components'),
-    '@/utils': path.resolve(__dirname, '..', 'src/utils'),
-    '@/package': path.resolve(__dirname, '..', 'package.json'),
-    '@/project': path.resolve(__dirname, '..', 'project.config.json'),
-  },
+  // alias: {
+  //   '@/components': path.resolve(__dirname, '..', 'src/components'),
+  //   '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+  //   '@/project': path.resolve(__dirname, '..', 'project.config.json'),
+  // },
   framework: 'react',
   mini: {
     postcss: {
