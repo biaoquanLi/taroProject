@@ -1,5 +1,7 @@
 {
+    "experimentalDecorators": true, // 主要是这个
     "compilerOptions": {
+        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
             "@/components/*": [

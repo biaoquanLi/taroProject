@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { View, Button, Text } from '@tarojs/components'
 import Menu from '../../components/menu/Menu'
-// import { getTopicList } from '@/utils/request'
-// import { getTopicList } from '../../utils/request'
+import TopicList from '../../components/topicList/TopicList'
 
 import './index.less'
 class Index extends Component {
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
+  componentWillReceiveProps() {
   }
   componentDidMount() {
-    // getTopicList()
   }
   componentWillUnmount() { }
 
@@ -23,6 +20,7 @@ class Index extends Component {
       <View className='index'>
         <View>
           <Menu />
+          <TopicList></TopicList>
         </View>
       </View>
     )
