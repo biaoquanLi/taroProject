@@ -6,7 +6,6 @@ import './topic.less'
 // import { myTimeToLocal } from '../../utils/date'
 class Topic extends Component {
     gotoDetail = () => {
-        console.log(555, this.props.item.id)
         Taro.navigateTo({ url: '/pages/detail/index?id=' + this.props.item.id })
     }
     render() {
