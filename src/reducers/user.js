@@ -1,9 +1,13 @@
 const USER = {
-    accesstoken: 'd5a1e2d3-5b7b-466e-a14d-8522f4041e3d'
+    userMessage: null
 }
 
 export default function user(prestate = USER, action) {
     switch (action.type) {
+        case 'accesstokenSuccess':
+            return {...prestate, userMessage:action.userMessage}
+        case 'accesstokenFail':
+            return {...prestate, userMessage:null}
         default:
             return { ...prestate }
     }

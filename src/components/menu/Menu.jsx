@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Text, Button, Image } from '@tarojs/components';
-import { AtDrawer, AtButton } from 'taro-ui'
+import { View, Text,  Image } from '@tarojs/components';
+import { AtDrawer } from 'taro-ui'
 import { connect } from 'react-redux'
 import { showDrawer, hideDrawer, changeCata } from '../../actions/menu'
 import { getTopicList } from '../../actions/topicList'
 import './menu.less'
+
 @connect(function ({ menu }) {
     return { ...menu }
 }, function (dispatch) {
@@ -46,20 +47,20 @@ class Menu extends Component {
         const { isShowDrawer, currentCata } = this.props
         // const customStyle = { 'position': 'absolute' }
         return (
-            <View className="topiclist-menu" >
+            <View className='topiclist-menu' >
                 <View style={{ position: 'absolute' }}>
                     <AtDrawer
-                        show={isShowDrawer}
-                        mask
-                        onItemClick={this.onItemClick.bind(this)}
-                        onClose={this.hideDrawer.bind(this)}
-                        items={menuList}
-                        width="50%"
+                      show={isShowDrawer}
+                      mask
+                      onItemClick={this.onItemClick.bind(this)}
+                      onClose={this.hideDrawer.bind(this)}
+                      items={menuList}
+                      width='50%'
                     ></AtDrawer>
                 </View>
-                <Image className="image left" onClick={this.showDrawer.bind(this)} src={require('../../assets/img/cata.png')} />
+                <Image className='image left' onClick={this.showDrawer.bind(this)} src={require('../../assets/img/cata.png')} />
                 <Text>{currentCata ? currentCata.value : ''}</Text>
-                <Image className="image right" src={require('../../assets/img/login.png')} />
+                <Image className='image right' src={require('../../assets/img/login.png')} />
             </View>
         )
     }

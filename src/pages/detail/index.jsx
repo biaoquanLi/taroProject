@@ -4,12 +4,13 @@ import { View, Text, Button } from '@tarojs/components';
 import Replies from '../../components/topicInfo/replies.jsx'
 import TopicInfo from '../../components/topicInfo/topicInfo.jsx'
 import ReplyContent from '../../components/topicInfo/replyContent.jsx'
-import { getTopicInfo } from '../../actions/topicInfo'
-import { admire, replyRequest } from '../../actions/topicInfo'
+import { getTopicInfo , admire, replyRequest } from '../../actions/topicInfo'
+
 import { connect } from 'react-redux'
 import './detail.less';
+
 @connect(function ({ topicList, user }) {
-    return { ...topicList, accesstoken: user.accesstoken }
+    return { ...topicList, accesstoken: user.userMessage.accesstoken }
 }, function (dispatch) {
     return {
         getTopicInfo(params) {
