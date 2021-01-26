@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Text,  Image } from '@tarojs/components';
+import { View, Text, Image } from '@tarojs/components';
 import { AtDrawer } from 'taro-ui'
 import { connect } from 'react-redux'
 import { showDrawer, hideDrawer, changeCata } from '../../actions/menu'
@@ -42,6 +42,9 @@ class Menu extends Component {
     getMenuList() {
         return this.props.cataData.map(item => item.value)
     }
+    gotoUser = () => {
+        Taro.navigateTo({ url: '/pages/login/index' })
+    }
     render() {
         const menuList = this.getMenuList()
         const { isShowDrawer, currentCata } = this.props
@@ -50,17 +53,17 @@ class Menu extends Component {
             <View className='topiclist-menu' >
                 <View style={{ position: 'absolute' }}>
                     <AtDrawer
-                      show={isShowDrawer}
-                      mask
-                      onItemClick={this.onItemClick.bind(this)}
-                      onClose={this.hideDrawer.bind(this)}
-                      items={menuList}
-                      width='50%'
+                        show={isShowDrawer}
+                        mask
+                        onItemClick={this.onItemClick.bind(this)}
+                        onClose={this.hideDrawer.bind(this)}
+                        items={menuList}
+                        width='50%'
                     ></AtDrawer>
                 </View>
                 <Image className='image left' onClick={this.showDrawer.bind(this)} src={require('../../assets/img/cata.png')} />
                 <Text>{currentCata ? currentCata.value : ''}</Text>
-                <Image className='image right' src={require('../../assets/img/login.png')} />
+                <Image className='image right' onClick={this.gotoUser} src={require('../../assets/img/login.png')} />
             </View>
         )
     }

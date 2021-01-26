@@ -1,9 +1,10 @@
 export default {
   pages: [
-    'pages/login/index',
     'pages/index/index',
+    'pages/login/index',
     'pages/detail/index',
-    'pages/user/index'
+    'pages/user/index',
+    'pages/publish/index'
   ],
   window: {
     backgroundTextStyle: 'light',
