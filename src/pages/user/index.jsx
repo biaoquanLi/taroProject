@@ -18,7 +18,7 @@ class User extends Component {
         recent_topics: [],
         recent_replies: []
     }
-    componentDidMount() {
+    componentDidShow() {
         const { loginname } = this.props
         getUserDetail({ loginname }).then(res => {
             if (res.success) {

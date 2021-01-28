@@ -43,3 +43,10 @@ export async function publishTopic(params) {
     }
 }
 
+export function validateUser(params) {
+    if (params && params.accesstoken) {
+        return true
+    }
+    Taro.navigateTo({ url: '/pages/login/index' })
+    return false
+}

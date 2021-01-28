@@ -5,10 +5,11 @@ import { AtDrawer } from 'taro-ui'
 import { connect } from 'react-redux'
 import { showDrawer, hideDrawer, changeCata } from '../../actions/menu'
 import { getTopicList } from '../../actions/topicList'
+import { validateUser } from '../../actions/user'
 import './menu.less'
 
-@connect(function ({ menu }) {
-    return { ...menu }
+@connect(function ({ menu, user }) {
+    return { ...menu, user }
 }, function (dispatch) {
     return {
         showDrawer() {
@@ -43,7 +44,11 @@ class Menu extends Component {
         return this.props.cataData.map(item => item.value)
     }
     gotoUser = () => {
-        Taro.navigateTo({ url: '/pages/login/index' })
+        const { userMessage } = this.props.user
+        if (validateUser(userMessage)) {
+            Taro.navigateTo({ url: '/pages/user/index' })
+        }
+
     }
     render() {
         const menuList = this.getMenuList()

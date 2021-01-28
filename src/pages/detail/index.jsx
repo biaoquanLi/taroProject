@@ -4,13 +4,14 @@ import { View, Text, Button } from '@tarojs/components';
 import Replies from '../../components/topicInfo/replies.jsx'
 import TopicInfo from '../../components/topicInfo/topicInfo.jsx'
 import ReplyContent from '../../components/topicInfo/replyContent.jsx'
-import { getTopicInfo , admire, replyRequest } from '../../actions/topicInfo'
+import { getTopicInfo, admire, replyRequest } from '../../actions/topicInfo'
+import { validateUser } from '../../actions/user'
 
 import { connect } from 'react-redux'
 import './detail.less';
 
 @connect(function ({ topicList, user }) {
-    return { ...topicList, accesstoken: user.userMessage.accesstoken }
+    return { ...topicList, userMessage: user.userMessage }
 }, function (dispatch) {
     return {
         getTopicInfo(params) {
@@ -32,32 +33,40 @@ class Detail extends Component {
     }
     getDetail = () => {
         const id = getCurrentInstance().router.params.id
-        const { accesstoken } = this.props
-        this.props.getTopicInfo && this.props.getTopicInfo({ id, accesstoken })
+        const { userMessage } = this.props
+        this.props.getTopicInfo && this.props.getTopicInfo({ id, accesstoken: userMessage.accesstoken })
     }
     adimreValue = (item) => {
         const reply_id = item.id
-        const { accesstoken } = this.props
-        admire({ reply_id, accesstoken }).then(res => {
-            if (res.success) {
-                this.getDetail()
-            } else {
-                Taro.showToast({ title: '点赞失败', icon: 'none' })
-            }
-        })
+        const { userMessage } = this.props
+        console.log(userMessage)
+        if (validateUser(userMessage)) {
+            admire({ reply_id, accesstoken: userMessage.accesstoken }).then(res => {
+                if (res.success) {
+                    this.getDetail()
+                } else {
+                    Taro.showToast({ title: '点赞失败', icon: 'none' })
+                }
+            })
+        }
+
     }
     showReply = (item) => {
-        this.setState({ showReplyContent: !this.state.showReplyContent, currentReply: item ? item : null })
+        const { userMessage } = this.props
+        if (validateUser(userMessage)) {
+            this.setState({ showReplyContent: !this.state.showReplyContent, currentReply: item ? item : null })
+        }
+
     }
     cancelReply = () => {
         this.showReply()
     }
     replyOk = (content) => {
-        const { accesstoken } = this.props
+        const { userMessage } = this.props
         const { currentReply } = this.state
         const reply_id = currentReply ? currentReply.id : null
         let preName = currentReply ? '@' + currentReply.author.loginname + '  ' : ''//评论人的昵称
-        replyRequest({ accesstoken, content: preName + content, reply_id }).then(res => {
+        replyRequest({ accesstoken: userMessage.accesstoken, content: preName + content, reply_id }).then(res => {
             if (res.success) {
                 this.getDetail()
                 this.showReply()

@@ -1,17 +1,25 @@
 import Taro from '@tarojs/taro'
 import apiObj from '../constants/api'
 export function getJSON(url, data) {
+    Taro.showLoading({ title: '加载中' })
     return Taro.request({
         url,
         data,
-        method: 'GET'
+        method: 'GET',
+        complete: () => {
+            Taro.hideLoading()
+        }
     })
 }
 export function postJSON(url, data) {
+    Taro.showLoading({ title: '加载中' })
     return Taro.request({
         url,
         data,
-        method: 'POST'
+        method: 'POST',
+        complete: () => {
+            Taro.hideLoading()
+        }
     })
 }
 export async function getTopicList() {
