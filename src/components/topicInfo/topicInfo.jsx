@@ -4,8 +4,12 @@ import { View, Text, Image, Button, RichText } from '@tarojs/components';
 import { connect } from 'react-redux'
 import './topicInfo.less'
 class TopicInfo extends Component {
+    edit(topicInfo) {
+        Taro.redirectTo({ url: '/pages/publish/index?edit=1' })
+    }
     render() {
-        const { topicInfo } = this.props
+        const { topicInfo, canEditAndDel } = this.props
+        console.log('topicInfo', topicInfo)
         return (
             <View className='topic-info'>
                 <View className='topic-info-header'>
@@ -16,10 +20,10 @@ class TopicInfo extends Component {
                         <Text>{topicInfo.author ? topicInfo.author.loginname : ''}</Text>
                         <Text>{topicInfo.visit_count + '次浏览'}</Text>
                     </View>
-                    <View className='topic-info-header-img'>
+                    {canEditAndDel ? <View className='topic-info-header-img'>
                         <Image className='img' src={require('../../assets/img/del.png')} />
-                        <Image className='img' src={require('../../assets/img/edit.png')} />
-                    </View>
+                        <Image className='img' onClick={this.edit.bind(this, topicInfo)} src={require('../../assets/img/edit.png')} />
+                    </View> : null}
                 </View>
                 <View className='topic-info-body'>
                     <RichText nodes={topicInfo.content} />

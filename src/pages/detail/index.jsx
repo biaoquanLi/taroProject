@@ -27,6 +27,7 @@ class Detail extends Component {
     state = {
         showReplyContent: false,
         currentReply: null,
+        canEditAndDel: false
     }
     componentWillMount() {
         this.getDetail()
@@ -76,12 +77,13 @@ class Detail extends Component {
         })
     }
     render() {
-        const { topicInfo, replies } = this.props
+        const { topicInfo, replies, userMessage } = this.props
         const { showReplyContent } = this.state
+        const canEditAndDel = topicInfo.author_id === userMessage.id
         return (
             <View className='detail'>
                 {showReplyContent ? <ReplyContent onCancel={this.cancelReply} onReplyOk={this.replyOk}></ReplyContent> : null}
-                <TopicInfo topicInfo={topicInfo} />
+                <TopicInfo topicInfo={topicInfo} canEditAndDel={canEditAndDel} />
                 <Replies replies={replies} onAdmire={this.adimreValue} onShowReply={this.showReply} />
                 <Button className='replyBtn' onClick={this.showReply.bind(this, null)} >回复</Button>
             </View>

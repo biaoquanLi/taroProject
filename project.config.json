@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "taroProject",
   "description": "基于taro多端框架开发的应用",
-  "appid": "touristappid",
+  "appid": "wx2991c16af9114b1f",
   "setting": {
     "urlCheck": true,
     "es6": false,

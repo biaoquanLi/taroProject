@@ -43,6 +43,15 @@ export async function publishTopic(params) {
     }
 }
 
+export async function editTopic(params) {
+    const result = await postJSON(api.updateTopic, params)
+    if (result && result.data) {
+        if (result.data.success) {
+            return result.data
+        }
+    }
+}
+
 export function validateUser(params) {
     if (params && params.accesstoken) {
         return true

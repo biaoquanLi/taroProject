@@ -56,7 +56,7 @@ class Menu extends Component {
         // const customStyle = { 'position': 'absolute' }
         return (
             <View className='topiclist-menu' >
-                <View style={{ position: 'absolute' }}>
+                <View style={{ position: 'absolute', height: '100%', background: '#ffffff' }}>
                     <AtDrawer
                         show={isShowDrawer}
                         mask
